@@ -1,0 +1,22 @@
+services:
+  vault:
+    image: vault:1.11.2
+    env_file:
+    - vault.env
+    ports:
+    - 8200:8200
+    volumes:
+    - ./vault-init.sh:/vault-init.sh
+    cap_add:
+    - IPC_LOCK
+    entrypoint:
+    - /bin/sh
+    - -c
+    - chmod +x /vault-init.sh && /vault-init.sh
+
+  # client:
+  #   image: alpine:latest
+  #   env_file:
+  #   - vault.env
+  #   env:
+  #     VAULT_ADDR: http://vault:8200
