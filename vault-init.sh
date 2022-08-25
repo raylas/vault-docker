@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-vault server -dev &
+vault server -dev -dev-root-token-id=$VAULT_TOKEN &
 
 sleep 5
 
